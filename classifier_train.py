@@ -18,7 +18,7 @@ y = np.array([1]*len(X) + [0]*len(neg_X))
 X = np.concatenate((X, neg_X), axis = 0)
 
 clf = RandomForestClassifier(n_estimators = 200, max_depth = 10, oob_score = True,
-    min_samples_split = 2, random_state = 10)
+    min_samples_split = 2, random_state = 10, verbose=True)
 
 #t_size=0.09#测试集所占比例，分数
 #train_X, test_X, train_Y, test_Y = train_test_split(X, y, test_size=t_size, random_state=10)

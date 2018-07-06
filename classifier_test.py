@@ -22,10 +22,6 @@ X = np.concatenate((X, neg_X), axis = 0)
 clf = joblib.load('first_tree.model')
 y_result = clf.predict(X)
 
-
-
-
-
 #y_result = clf.predict_proba(X)
 pos_neg = 0
 neg_pos = 0
