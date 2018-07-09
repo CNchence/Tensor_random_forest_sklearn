@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
     #pos_dir = 'L:\\Dataset\\images\\7.3\\1530598544_pos\\image\\'
     #neg_dir = 'L:\\Dataset\\images\\7.3\\1530598544_pos\\image\\'
-    pack_dir = 'L:\\Dataset\\images\\7.3\\train\\'
+    pack_dir = 'L:\\Dataset\\images\\7.7\\test\\'
     #pos_dir =  'L:\\Dataset\\images\\7.3\\train\\1530598544_pos\\'
     #neg_dir = 'L:\\Dataset\\images\\7.3\\train\\1530600404_pos\\'
 

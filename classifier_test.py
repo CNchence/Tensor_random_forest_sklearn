@@ -9,17 +9,18 @@ from datetime import datetime
 from sklearn import tree
 
 print('begin at '+ datetime.now().strftime('%H:%M:%S'))
-
-X = np.load("pos_feature_data_array.npy")
+data_dir = "J:\\D2CO_dataset\\images\\7.9\\"
+test_dir = data_dir + 'test\\'
+X = np.load(test_dir + "pos_feature_data_array.npy")
 print('finish load feature_data_array at '+ datetime.now().strftime('%H:%M:%S'))
 
-neg_X = np.load("neg_feature_data_array.npy")
+neg_X = np.load(test_dir + "neg_feature_data_array.npy")
 print('finish load neg_feature_data_array at '+ datetime.now().strftime('%H:%M:%S'))
 
 y = np.array([1]*len(X) + [0]*len(neg_X))
 X = np.concatenate((X, neg_X), axis = 0)
 
-clf = joblib.load('first_tree.model')
+clf = joblib.load(data_dir + 'classifier_trees.model')
 y_result = clf.predict(X)
 
 #y_result = clf.predict_proba(X)

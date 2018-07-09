@@ -9,12 +9,12 @@ from datetime import datetime
 from sklearn_porter import Porter
 from sklearn import tree
 
-def change_model_to_c(name):
-    clf = joblib.load(name)
+def change_model_to_c(dir, name):
+    clf = joblib.load(dir + name)
     porter = Porter(clf, language='c')
     output = porter.export(embed_data=True)
     print(output)
-    f = open(name.split('.')[0]+".txt", 'a')
+    f = open(dir + name.split('.')[0]+".cpp", 'a')
     f.truncate()
     f.write(output)
     f.close()
@@ -28,4 +28,4 @@ def generate_c_test_data():
     print(neg_X)
 
 #generate_c_test_data()
-change_model_to_c("6_25_five_pose.model")
+change_model_to_c("J:\\D2CO_dataset\\images\\7.9\\", 'classifier_trees.model')

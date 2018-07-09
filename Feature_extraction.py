@@ -1,4 +1,5 @@
 import numpy
+import cv2
 
 
 class NPDFeature():
@@ -45,3 +46,12 @@ class NPDFeature():
                 else:
                     table[i][j] = (i - j) / (i + j)
         return table
+
+if __name__ == '__main__':
+    im = cv2.imread("L:\\Dataset\\Tensor\\1529592066\\image\\1529592068.bmp", 0)
+    im = cv2.resize(im, (24, 24))
+    # im.show()
+    im_array = numpy.array(im)
+    #print(im_array[:24])
+    img_feature = NPDFeature(im_array).extract()
+    print(img_feature[:300])

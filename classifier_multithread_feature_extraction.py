@@ -1,6 +1,6 @@
 import numpy as np
 from multiprocessing import Pool
-from PIL import Image
+import cv2
 from Feature_extraction import *
 import threading
 import gc
@@ -8,11 +8,11 @@ import os
 from datetime import datetime
 
 def feature_extract(dir):
-    im = Image.open(dir).convert('L')
-    im = im.resize((24, 24))
+    im = cv2.imread(dir,0)
+    im = cv2.resize(im,(24, 24))
     im_array = np.array(im)
     img_feature = NPDFeature(im_array).extract()
-    print('img '+ dir.split('//')[1]+ ' finish')
+    print('img '+ dir.split('\\')[1]+ ' finish')
     return img_feature
 
 def feature_connect(triple_list, feature_block):
@@ -59,9 +59,9 @@ def connect_feature_save(pos_result_list, name):
 
 if __name__ == '__main__':
     print('begin at ' + datetime.now().strftime('%H:%M:%S'))
-
-    pos_dir = 'pos//'
-    neg_dir = 'neg//'
+    data_dir = 'J:\\D2CO_dataset\\images\\7.9\\test\\'
+    pos_dir = data_dir + 'pos\\'
+    neg_dir = data_dir + 'neg\\'
     pos_img_dir = []
     neg_img_dir = []
 
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     print('finish pos_feature_extraction')
 
     print('start to joint pos feature and save ')
-    connect_feature_save(pos_result_list, 'pos')
+    connect_feature_save(pos_result_list, data_dir+'pos')
 
     del pos_result_list
     gc.collect()
@@ -90,7 +90,7 @@ if __name__ == '__main__':
     print('finish neg_feature_extraction')
 
     print('start to joint neg feature and save ')
-    connect_feature_save(neg_result_list, 'neg')
+    connect_feature_save(neg_result_list, data_dir + 'neg')
 
     print('end at ' + datetime.now().strftime('%H:%M:%S'))
 
