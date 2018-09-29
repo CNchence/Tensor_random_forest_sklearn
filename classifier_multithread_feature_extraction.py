@@ -59,7 +59,7 @@ def connect_feature_save(pos_result_list, name):
 
 if __name__ == '__main__':
     print('begin at ' + datetime.now().strftime('%H:%M:%S'))
-    data_dir = 'J:\\D2CO_dataset\\images\\7.9\\test\\'
+    data_dir = 'F:\\D2CO_dataset\\detect_train_data\\test\\'
     pos_dir = data_dir + 'pos\\'
     neg_dir = data_dir + 'neg\\'
     pos_img_dir = []

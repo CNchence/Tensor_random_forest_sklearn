@@ -28,4 +28,4 @@ def generate_c_test_data():
     print(neg_X)
 
 #generate_c_test_data()
-change_model_to_c("J:\\D2CO_dataset\\images\\7.9\\", 'classifier_trees.model')
+change_model_to_c("F:\\D2CO_dataset\\detect_train_data\\test\\", 'classifier_forest.model')
