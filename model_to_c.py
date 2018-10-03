@@ -50,7 +50,7 @@ def change_model_to_c(dir, name):
 
     pos = content.find("int predict (float features[]) {")
     if pos != -1:
-        file_add = open("predict_function.txt", "r")
+        file_add = open("predict_function.cpp", "r")
         content_add = file_add.read()
         content = content[:pos] + content_add         #修改predict函数
         file_add.close()
