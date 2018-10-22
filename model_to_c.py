@@ -63,4 +63,4 @@ def change_model_to_c(dir, name):
 
 
     #generate_c_test_data()
-change_model_to_c("F:\\D2CO_dataset\\detect_train_data\\1538123396_pos_neg\\", 'classifier_forest.model')
+change_model_to_c("F:\\D2CO_dataset\\detect_train_data\\1539228326_pos_neg\\", 'classifier_forest.model')

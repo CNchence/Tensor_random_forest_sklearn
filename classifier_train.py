@@ -6,7 +6,7 @@ from datetime import datetime
 from sklearn import tree
 
 print('begin at ' + datetime.now().strftime('%H:%M:%S'))
-train_dir = "F:\\D2CO_dataset\\detect_train_data\\test\\"
+train_dir = "F:\\D2CO_dataset\\detect_train_data\\1539228326_pos_neg\\"
 X = np.load(train_dir + "pos_feature_data_array.npy")
 print('finish load feature_data_array at ' + datetime.now().strftime('%H:%M:%S'))
 
