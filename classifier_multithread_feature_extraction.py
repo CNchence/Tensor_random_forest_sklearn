@@ -23,11 +23,13 @@ def feature_connect(triple_list, feature_block):
     #print(i,j)
     tmp_list = pos_result_list[i:j]
     #print('size', len(tmp_list))
-    features_array = np.array(tmp_list[0])
-    for n in range(1,len(tmp_list)) :
-        features_array = np.row_stack((features_array, tmp_list[n]))
+    #features_array = np.array(tmp_list[0])
+    #for n in range(1,len(tmp_list)) :
+    #    features_array = np.row_stack((features_array, tmp_list[n]))
+    features_array = np.vstack(tuple(tmp_list))
+
     feature_block.append(features_array)
-    print('block',i,'joint complete')
+    print('block', i, 'joint complete')
 
 def connect_feature_save(pos_result_list, name):
     features_array = np.array(pos_result_list[0])
@@ -83,7 +85,8 @@ if __name__ == '__main__':
     print('finish pos_feature_extraction')
 
     print('start to joint pos feature and save ')
-    pos_array = connect_feature_save(pos_result_list, data_dir+'pos')
+    #pos_array = connect_feature_save(pos_result_list, data_dir+'pos')
+    pos_array = np.vstack(tuple(pos_result_list))
 
     del pos_result_list
     gc.collect()
@@ -92,7 +95,8 @@ if __name__ == '__main__':
     print('finish neg_feature_extraction')
 
     print('start to joint neg feature and save ')
-    neg_array = connect_feature_save(neg_result_list, data_dir + 'neg')
+    #neg_array = connect_feature_save(neg_result_list, data_dir + 'neg')
+    neg_array = np.vstack(tuple(neg_result_list))
 
     print('end at ' + datetime.now().strftime('%H:%M:%S'))
 
