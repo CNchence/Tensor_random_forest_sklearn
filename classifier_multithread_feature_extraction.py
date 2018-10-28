@@ -6,13 +6,14 @@ import threading
 import gc
 import os
 from datetime import datetime
-
+from classifier_train import classifier_train
+from model_to_c import change_model_to_c
 def feature_extract(dir):
     im = cv2.imread(dir,0)
     im = cv2.resize(im,(24, 24))
     im_array = np.array(im)
     img_feature = NPDFeature(im_array).extract()
-    print('img '+ dir.split('\\')[1]+ ' finish')
+    print('img '+ dir.split('\\')[-1] + ' finish')
     return img_feature
 
 def feature_connect(triple_list, feature_block):
@@ -53,13 +54,14 @@ def connect_feature_save(pos_result_list, name):
     for block in feature_block:
         features_array = np.row_stack((features_array, block))                                          #join all blocks
 
-    np.save(name + '_feature_data_array', features_array)
-    print(name,'feature save complete')
+    #np.save(name + '_feature_data_array', features_array)
+    print(name,'feature extra complete')
+    return features_array
 
 
 if __name__ == '__main__':
     print('begin at ' + datetime.now().strftime('%H:%M:%S'))
-    data_dir = 'F:\\D2CO_dataset\\detect_train_data\\1539228326_pos_neg\\'
+    data_dir = 'F:\\D2CO_dataset\\detect_train_data\\test\\'
     pos_dir = data_dir + 'pos\\'
     neg_dir = data_dir + 'neg\\'
     pos_img_dir = []
@@ -81,7 +83,7 @@ if __name__ == '__main__':
     print('finish pos_feature_extraction')
 
     print('start to joint pos feature and save ')
-    connect_feature_save(pos_result_list, data_dir+'pos')
+    pos_array = connect_feature_save(pos_result_list, data_dir+'pos')
 
     del pos_result_list
     gc.collect()
@@ -90,12 +92,12 @@ if __name__ == '__main__':
     print('finish neg_feature_extraction')
 
     print('start to joint neg feature and save ')
-    connect_feature_save(neg_result_list, data_dir + 'neg')
+    neg_array = connect_feature_save(neg_result_list, data_dir + 'neg')
 
     print('end at ' + datetime.now().strftime('%H:%M:%S'))
 
-
-
+    classifier_train(pos_array, neg_array, data_dir)
+    change_model_to_c(data_dir, 'classifier_forest.model')
 
 
 
